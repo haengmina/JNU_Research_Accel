@@ -118,7 +118,7 @@ import functools
 
 import tensorflow as tf
 import tf_slim as slim
-import tensorflow.keras as layers
+
 
 # Conv and DepthSepConv는 MobileNet 레이어 구성을 정의
 # Conv defines 3x3 convolution layers
@@ -582,7 +582,7 @@ def mobilenet_v1_arg_scope(
     weights_initializer=weights_init,
     activation_fn=tf.nn.relu6,
     # slim.batch_norm 대신 Keras의 BatchNormalization 레이어 사용
-    normalizer_fn=layers.BatchNormalization,
+    normalizer_fn=tf.keras.layers.BatchNormalization,
     # Keras Layer에 맞는 파라미터 전달
     normalizer_params=batch_norm_params):
     # 모든 conv와 separableConv에 적용
