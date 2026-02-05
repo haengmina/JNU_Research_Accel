@@ -41,3 +41,11 @@ desktop.ini
 !vitis_src/*.cpp
 !vitis_src/*.c
 !vitis_src/*.h
+
+# --- Additional Remote Rules ---
+# TensorFlow 1.x Pre-trained Models
+mobilenet_v1/PreTrainedModels/
+python36_model/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/

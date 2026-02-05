@@ -1,0 +1,99 @@
+2026-01-09 15:54:41.518791: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2026-01-09 15:54:41.519608: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-09 15:54:41.576904: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-09 15:54:42.484300: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-09 15:54:42.485192: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+/home/mini/miniconda3/envs/mobilenet_env/lib/python3.13/site-packages/keras/src/export/tf2onnx_lib.py:8: FutureWarning: In the future `np.object` will be defined as the corresponding NumPy scalar.
+  if not hasattr(np, "object"):
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1767941682.715796   74770 cuda_executor.cc:1309] INTERNAL: CUDA Runtime error: Failed call to cudaGetRuntimeVersion: Error loading CUDA libraries. GPU will not be used.: Error loading CUDA libraries. GPU will not be used.
+W0000 00:00:1767941682.723974   74770 gpu_device.cc:2342] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+Running tests under Python 3.13.11: /home/mini/miniconda3/envs/mobilenet_env/bin/python
+[ RUN      ] MobilenetV1Test.testBuildAndCheckAllEndPointsApproximateFaceNet
+/home/mini/miniconda3/envs/mobilenet_env/lib/python3.13/site-packages/tensorflow/python/keras/engine/base_layer.py:2213: UserWarning: `layer.apply` is deprecated and will be removed in a future version. Please use `layer.__call__` method instead.
+  warnings.warn('`layer.apply` is deprecated and '
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildAndCheckAllEndPointsApproximateFaceNet): 0.36s
+I0109 15:54:43.097405 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildAndCheckAllEndPointsApproximateFaceNet): 0.36s
+[       OK ] MobilenetV1Test.testBuildAndCheckAllEndPointsApproximateFaceNet
+[ RUN      ] MobilenetV1Test.testBuildAndCheckAllEndPointsUptoConv2d_13
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildAndCheckAllEndPointsUptoConv2d_13): 0.42s
+I0109 15:54:43.521367 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildAndCheckAllEndPointsUptoConv2d_13): 0.42s
+[       OK ] MobilenetV1Test.testBuildAndCheckAllEndPointsUptoConv2d_13
+[ RUN      ] MobilenetV1Test.testBuildBaseNetwork
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildBaseNetwork): 0.2s
+I0109 15:54:43.727633 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildBaseNetwork): 0.2s
+[       OK ] MobilenetV1Test.testBuildBaseNetwork
+[ RUN      ] MobilenetV1Test.testBuildClassificationNetwork
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildClassificationNetwork): 0.24s
+I0109 15:54:43.966184 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildClassificationNetwork): 0.24s
+[       OK ] MobilenetV1Test.testBuildClassificationNetwork
+[ RUN      ] MobilenetV1Test.testBuildCustomNetworkUsingConvDefs
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildCustomNetworkUsingConvDefs): 0.09s
+I0109 15:54:44.057948 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildCustomNetworkUsingConvDefs): 0.09s
+[       OK ] MobilenetV1Test.testBuildCustomNetworkUsingConvDefs
+[ RUN      ] MobilenetV1Test.testBuildEndPointsWithDepthMultiplierGreaterThanOne
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildEndPointsWithDepthMultiplierGreaterThanOne): 0.53s
+I0109 15:54:44.589643 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildEndPointsWithDepthMultiplierGreaterThanOne): 0.53s
+[       OK ] MobilenetV1Test.testBuildEndPointsWithDepthMultiplierGreaterThanOne
+[ RUN      ] MobilenetV1Test.testBuildEndPointsWithDepthMultiplierLessThanOne
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildEndPointsWithDepthMultiplierLessThanOne): 0.38s
+I0109 15:54:44.974181 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildEndPointsWithDepthMultiplierLessThanOne): 0.38s
+[       OK ] MobilenetV1Test.testBuildEndPointsWithDepthMultiplierLessThanOne
+[ RUN      ] MobilenetV1Test.testBuildOnlyUptoFinalEndpoint
+/home/mini/miniconda3/envs/mobilenet_env/lib/python3.13/site-packages/tensorflow/python/keras/engine/base_layer_v1.py:1694: UserWarning: `layer.apply` is deprecated and will be removed in a future version. Please use `layer.__call__` method instead.
+  warnings.warn('`layer.apply` is deprecated and '
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildOnlyUptoFinalEndpoint): 3.78s
+I0109 15:54:48.760747 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildOnlyUptoFinalEndpoint): 3.78s
+[       OK ] MobilenetV1Test.testBuildOnlyUptoFinalEndpoint
+[ RUN      ] MobilenetV1Test.testBuildPreLogitsNetwork
+INFO:tensorflow:time(__main__.MobilenetV1Test.testBuildPreLogitsNetwork): 0.21s
+I0109 15:54:48.975755 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testBuildPreLogitsNetwork): 0.21s
+[       OK ] MobilenetV1Test.testBuildPreLogitsNetwork
+[ RUN      ] MobilenetV1Test.testEvaluation
+INFO:tensorflow:time(__main__.MobilenetV1Test.testEvaluation): 0.2s
+I0109 15:54:49.178403 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testEvaluation): 0.2s
+[       OK ] MobilenetV1Test.testEvaluation
+[ RUN      ] MobilenetV1Test.testGlobalPoolUnknownImageShape
+INFO:tensorflow:time(__main__.MobilenetV1Test.testGlobalPoolUnknownImageShape): 0.19s
+I0109 15:54:49.367038 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testGlobalPoolUnknownImageShape): 0.19s
+[       OK ] MobilenetV1Test.testGlobalPoolUnknownImageShape
+[ RUN      ] MobilenetV1Test.testHalfSizeImages
+INFO:tensorflow:time(__main__.MobilenetV1Test.testHalfSizeImages): 0.18s
+I0109 15:54:49.548067 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testHalfSizeImages): 0.18s
+[       OK ] MobilenetV1Test.testHalfSizeImages
+[ RUN      ] MobilenetV1Test.testLogitsNotSqueezed
+INFO:tensorflow:time(__main__.MobilenetV1Test.testLogitsNotSqueezed): 0.17s
+I0109 15:54:49.722061 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testLogitsNotSqueezed): 0.17s
+[       OK ] MobilenetV1Test.testLogitsNotSqueezed
+[ RUN      ] MobilenetV1Test.testOutputStride16BuildAndCheckAllEndPointsUptoConv2d_13
+INFO:tensorflow:time(__main__.MobilenetV1Test.testOutputStride16BuildAndCheckAllEndPointsUptoConv2d_13): 0.43s
+I0109 15:54:50.154203 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testOutputStride16BuildAndCheckAllEndPointsUptoConv2d_13): 0.43s
+[       OK ] MobilenetV1Test.testOutputStride16BuildAndCheckAllEndPointsUptoConv2d_13
+[ RUN      ] MobilenetV1Test.testOutputStride8BuildAndCheckAllEndPointsUptoConv2d_13
+INFO:tensorflow:time(__main__.MobilenetV1Test.testOutputStride8BuildAndCheckAllEndPointsUptoConv2d_13): 0.7s
+I0109 15:54:50.860814 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testOutputStride8BuildAndCheckAllEndPointsUptoConv2d_13): 0.7s
+[       OK ] MobilenetV1Test.testOutputStride8BuildAndCheckAllEndPointsUptoConv2d_13
+[ RUN      ] MobilenetV1Test.testRaiseValueErrorWithInvalidDepthMultiplier
+INFO:tensorflow:time(__main__.MobilenetV1Test.testRaiseValueErrorWithInvalidDepthMultiplier): 0.0s
+I0109 15:54:50.866390 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testRaiseValueErrorWithInvalidDepthMultiplier): 0.0s
+[       OK ] MobilenetV1Test.testRaiseValueErrorWithInvalidDepthMultiplier
+[ RUN      ] MobilenetV1Test.testTrainEvalWithReuse
+INFO:tensorflow:time(__main__.MobilenetV1Test.testTrainEvalWithReuse): 0.32s
+I0109 15:54:51.188846 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testTrainEvalWithReuse): 0.32s
+[       OK ] MobilenetV1Test.testTrainEvalWithReuse
+[ RUN      ] MobilenetV1Test.testUnknowBatchSize
+INFO:tensorflow:time(__main__.MobilenetV1Test.testUnknowBatchSize): 0.17s
+I0109 15:54:51.363179 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testUnknowBatchSize): 0.17s
+[       OK ] MobilenetV1Test.testUnknowBatchSize
+[ RUN      ] MobilenetV1Test.testUnknownImageShape
+INFO:tensorflow:time(__main__.MobilenetV1Test.testUnknownImageShape): 0.19s
+I0109 15:54:51.556111 137634887096128 test_util.py:2634] time(__main__.MobilenetV1Test.testUnknownImageShape): 0.19s
+[       OK ] MobilenetV1Test.testUnknownImageShape
+[ RUN      ] MobilenetV1Test.test_session
+[  SKIPPED ] MobilenetV1Test.test_session - Not a test.
+----------------------------------------------------------------------
+Ran 20 tests in 8.226s
+
+OK (skipped=1)
