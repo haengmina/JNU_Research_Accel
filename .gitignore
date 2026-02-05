@@ -1,0 +1,43 @@
+# --- Xilinx Vitis / Vivado ---
+*.log
+*.jou
+*.str
+*.pb
+*.html
+# Vitis reports and logs
+.Xil/
+.metadata/
+.analytics/
+_ide/
+.settings/
+RemoteSystemsTempFiles/
+
+# --- Build Artifacts ---
+Debug/
+Release/
+obj/
+bin/
+*.o
+*.obj
+*.elf
+*.bit
+*.mmi
+*.d
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Exceptions (Keep important assets) ---
+!assets/*.bin
+!platform/*.xsa
+!vitis_src/*.cpp
+!vitis_src/*.c
+!vitis_src/*.h
