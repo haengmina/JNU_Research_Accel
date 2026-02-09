@@ -1,0 +1,14 @@
+#Python cache
+__pycache__/
+*.pyc
+
+# TensorFlow 1.x Pre-trained Models
+# 이 폴더 안의 .tgz 파일들이 용량이 크므로 제외.
+mobilenet_v1/PreTrainedModels/
+
+# 원본 폴더
+python36_model/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
