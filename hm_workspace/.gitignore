@@ -1,0 +1,67 @@
+# ==============================================
+# Xilinx Vivado / Vitis Workspace .gitignore
+# ==============================================
+
+# --- Vivado Project Files ---
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.wcfg
+.Xil/
+
+# --- Vivado Build Artifacts ---
+*/project_*.runs/
+*/project_*.cache/
+*/project_*.hw/
+*/project_*.ip_user_files/
+*/project_*.sim/
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+
+# --- Vitis Platform Build ---
+**/export/
+**/zynqmp_fsbl/
+**/zynqmp_pmufw/
+**/psu_cortexa53_0/
+**/.log/
+**/logs/
+**/resources/
+
+# --- Vitis Application Build ---
+Debug/
+Release/
+*.o
+*.d
+*.elf
+*.map
+
+# --- Vitis IDE Files ---
+.metadata/
+.analytics
+RemoteSystemsTempFiles/
+_ide/
+.settings/
+
+# --- Keep Important Files ---
+!*.xsa
+!*.spr
+!*.prj
+!*.tcl
+!src/**
+!platform.spr
+!platform.tcl
+
+# --- Large Binary Files ---
+*.bit
+*.bin
+*.mmi
+*.pdi
+
+# --- Exceptions for source tracking ---
+!**/.project
+!**/.cproject

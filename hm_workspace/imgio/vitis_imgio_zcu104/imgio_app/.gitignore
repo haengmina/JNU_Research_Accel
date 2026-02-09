@@ -1,0 +1,8 @@
+# Vitis Application - Build Artifacts
+/Debug/
+/Release/
+/_ide/
+*.o
+*.d
+*.elf
+*.map
