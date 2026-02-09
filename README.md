@@ -1,37 +1,37 @@
-# JNU Research Accelerator - FPGA AI Project
+# JNU 연구 가속기 - FPGA AI 프로젝트
 
-This repository contains the workspace and reference materials for developing FPGA-based AI accelerators on Xilinx ZCU104 and Zybo Z7-10 platforms.
+이 리포지토리는 Xilinx ZCU104 및 Zybo Z7-10 플랫폼 기반의 FPGA AI 가속기 개발을 위한 작업 공간 및 참조 자료를 포함하고 있습니다.
 
-## Directory Structure
+## 디렉토리 구조
 
-### 1. `hm_workspace/` (Active Development)
-This is the primary workspace for Xilinx Vivado and Vitis projects.
-- **Tools used:** Vivado 2022.2, Vitis 2022.2
-- **Contents:**
-  - `imgio/project_zcu104_imgio/`: Vivado hardware project with Zynq UltraScale+ MPSoC block design.
-  - `imgio/vitis_imgio_zcu104/`: Vitis platform project (`zcu104_imgio_hw`) and application code (`imgio_app`).
-  - Contains build artifacts, bitstreams, and launch configurations.
+### 1. `hm_workspace/` (현재 개발 공간)
+Xilinx Vivado 및 Vitis 프로젝트를 위한 주요 작업 공간입니다.
+- **사용 도구:** Vivado 2022.2, Vitis 2022.2
+- **내용:**
+  - `imgio/project_zcu104_imgio/`: Zynq UltraScale+ MPSoC 블록 디자인이 포함된 Vivado 하드웨어 프로젝트.
+  - `imgio/vitis_imgio_zcu104/`: Vitis 플랫폼 프로젝트 (`zcu104_imgio_hw`) 및 애플리케이션 코드 (`imgio_app`).
+  - 빌드 결과물(artifacts), 비트스트림, 실행 설정(launch configurations)을 포함합니다.
 
-### 2. `dinh/` (Reference & Documentation)
-Contains the original reference implementations and learning guides.
-- **Documentation:** `docs/FPGA_Learning_Guide.md` (The main guide we are following).
-- **Source Code:** Reference C++ code for bare-metal applications (e.g., `zcu104-baremetal-imgio`).
-- **Assets:** Test images (`bmp_24.bmp`) and other resources.
+### 2. `dinh/` (참조 및 문서)
+원본 참조 구현체와 학습 가이드를 포함합니다.
+- **문서:** `docs/FPGA_Learning_Guide.md` (현재 따르고 있는 메인 가이드).
+- **소스 코드:** 베어메탈 애플리케이션용 참조 C++ 코드 (예: `zcu104-baremetal-imgio`).
+- **에셋:** 테스트 이미지 (`bmp_24.bmp`) 및 기타 리소스.
 
-### 3. `onnx_project/` (Deep Learning Models)
-Contains deep learning frameworks and model files for AI inference tasks.
-- **Frameworks:** TensorFlow, Caffe, ONNX.
-- **Models:** MobileNetV1, MobileNetV2, SSDLite.
-- **Purpose:** Used for training models, quantization, and exporting weights for the FPGA accelerator.
+### 3. `onnx_project/` (딥러닝 모델)
+AI 추론 작업을 위한 딥러닝 프레임워크 및 모델 파일을 포함합니다.
+- **프레임워크:** TensorFlow, Caffe, ONNX.
+- **모델:** MobileNetV1, MobileNetV2, SSDLite.
+- **목적:** FPGA 가속기를 위한 모델 학습, 양자화(quantization), 가중치(weights) 내보내기에 사용됩니다.
 
-## Getting Started
+## 시작하기 (Getting Started)
 
-1. **Hardware Setup:** Connect ZCU104 board via JTAG and UART.
-2. **Software:** Launch Vitis 2022.2 and open the workspace `hm_workspace`.
-3. **Build Flow:**
-   - Open the Platform Project (`zcu104_imgio_hw`) and build.
-   - Open the Application Project (`imgio_app`) and build.
-   - Run on hardware using "Launch on Hardware".
+1. **하드웨어 설정:** JTAG 및 UART를 통해 ZCU104 보드를 연결합니다.
+2. **소프트웨어:** Vitis 2022.2를 실행하고 `hm_workspace` 작업 공간을 엽니다.
+3. **빌드 흐름:**
+   - 플랫폼 프로젝트 (`zcu104_imgio_hw`)를 열고 빌드합니다.
+   - 애플리케이션 프로젝트 (`imgio_app`)를 열고 빌드합니다.
+   - "Launch on Hardware"를 사용하여 하드웨어에서 실행합니다.
 
-## License
-This project is part of the JNU Machine Learning Lab research.
+## 라이선스
+이 프로젝트는 JNU 머신러닝 연구실 연구의 일부입니다.
