@@ -1,0 +1,57 @@
+이 'models' 폴더는 TensorFlow Model Garden 이라는 이름으로 TensorFlow에서 제공하는 여러 모델들을 다루는 폴더.
+
+같은 level의 README.md 파일에는 저장소 목적, 설치 방법, 주요 디렉터리 설명 등이 작성되어 있다.
+
+MobileNet 구현과 스크립트는 models/research/slim/nets/ 위치에 mobilenet_v1.py와 관련 파일 존재.
+mobilenet v2, v3는 models/research/slim/nets/mobilenet/ 위치에 존재.
+
+모델 정의 : mobilenet_v1.py
+학습 스크립트 : mobilenet_train.py
+평가 스크립트 : mobilenet_v1_eval.py
+배포/내보내기 스크립트 : export_mobilenet.sh
+문서/설명 : mobilenet_v1.md
+
+나에게 필요한 파일 - "copilot"
+아래는 MobileNet v1/v2 연구에 바로 필요한 핵심 파일 목록(경로 + 한 줄 설명)입니다. 원하는 경우 각 파일을 열어 상세 리뷰하거나 quickstart 예제를 README에 추가해 드릴게요.
+
+mobilenet_v1.py:1 : MobileNet v1 모델 정의(레이어, 아키텍처).
+
+mobilenet_v1_train.py:1 : v1 학습 스크립트(학습 루프 파라미터).
+
+mobilenet_v1_eval.py:1 : v1 평가 루틴 및 체크포인트 로드.
+
+mobilenet_v1_test.py:1 : v1 유닛/통합 테스트(행동 확인).
+
+mobilenet_v1.md:1 : v1 설명 문서(아키텍처/하이퍼파라미터 요약).
+
+mobilenet_v1.png:1 : 아키텍처 그림(시각적 참조).
+
+models/research/slim/nets/mobilenet_v2.py : MobileNet v2 모델 정의(성능/효율 개선된 구조).
+
+models/research/slim/nets/mobilenet_v2_test.py : v2 테스트 파일.
+(참고: v2 학습/평가 스크립트는 train_image_classifier.py/eval_image_classifier.py와 함께 사용됩니다.)
+
+export_inference_graph.py:1 : 모델 추론 그래프(또는 체크포인트→SavedModel/TFLite) 생성 도구.
+
+export_mobilenet.sh:1 : MobileNet 내보내기 예시 스크립트.
+
+데이터 및 전처리 관련:
+
+imagenet.py:1 : ImageNet 데이터 로더/유틸(실험용).
+inception_preprocessing.py:1 : 이미지 전처리(리사이즈/정규화 등).
+preprocessing_factory.py:1 : 모델별 전처리 선택기.
+학습/평가 일반 스크립트(재사용):
+
+train_image_classifier.py:1 : 범용 학습 스크립트(하이퍼파라미터로 MobileNet 선택).
+eval_image_classifier.py:1 : 범용 평가 스크립트.
+보조(유틸/문서/패키지):
+
+README.md:1 : Slim 사용법 및 예제(quickstart 참고).
+mobilenet_v1.md:1 이미 포함(상기).
+
+# 추천 시작 순서:
+
+모델 구조 파악: 열기 → mobilenet_v1.py:1 / mobilenet_v2.py.
+전처리/데이터 확인: preprocessing_factory.py:1, imagenet.py:1.
+작은 데이터/샘플로 train_image_classifier.py와 export_inference_graph.py로 실습(로컬 빠른 실험).
+필요하면 README에 Quickstart 스니펫 추가 또는 특정 파일 심층 코드 리뷰.

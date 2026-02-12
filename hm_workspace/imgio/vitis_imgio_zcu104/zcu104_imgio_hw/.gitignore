@@ -1,0 +1,11 @@
+# Vitis Platform - Build Artifacts
+/export/
+/zynqmp_fsbl/
+/zynqmp_pmufw/
+/psu_cortexa53_0/
+/.log/
+/logs/
+/resources/
+*.o
+*.d
+*.elf

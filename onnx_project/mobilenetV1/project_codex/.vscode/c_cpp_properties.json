@@ -1,0 +1,29 @@
+////////////////////////////////////////////////////////////////////////////////////
+// C/C++ 구성 파일
+//
+// 이 파일은 VS Code의 C/C++ 확장 기능에서 사용되는 IntelliSense 설정을 정의합니다.
+// 여기에는 포함 경로, 컴파일러 경로, C/C++ 표준 등이 포함됩니다.
+// 이 설정은 프로젝트의 코드 탐색, 자동 완성 및 오류 검출 기능을 향상시키는 데 도움이 됩니다.
+// 수정 시 프로젝트의 실제 경로와 요구 사항에 맞게 조정해야 합니다.
+////////////////////////////////////////////////////////////////////////////////////
+
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [                                                      // #include 디렉토리 경로 설정
+        "/home/mini/libtorch/libtorch/include",                             // torch.h 경로
+        "/home/mini/libtorch/libtorch/include/torch/csrc/api/include",      // torch C++ API 경로
+        "/home/mini/jnu/lab/ml/mobilenetV1/project/src",                    // 프로젝트 내부 헤더 'mobilenet_v1.hpp' 경로
+        "${workspaceFolder}/**"                                             // 워크스페이스 폴더 내 모든 서브디렉토리 포함하여 어느 하위 폴더에 있어도 헤더를 찾도록 함
+      ],
+      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+      "defines": [],
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}
