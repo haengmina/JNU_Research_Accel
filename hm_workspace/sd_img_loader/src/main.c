@@ -38,8 +38,8 @@ static int run_image_test(const char *filename) {
     u32 occupancy_int = (file_size * 100) / MAX_IMAGE_SIZE;
     u32 occupancy_frac = ((file_size * 10000) / MAX_IMAGE_SIZE) % 100;
     xil_printf("[MEM] Image Size: %u bytes\n\r", file_size);
-    xil_printf("[MEM] Buffer Occupancy: %u.%02u%% (%u / %u)\n\r", 
-               occupancy_int, occupancy_frac, file_size, MAX_IMAGE_SIZE);
+    xil_printf("[MEM] Buffer Occupancy: %u.%02u%% \n\r", 
+               occupancy_int, occupancy_frac);
 
     if (file_size > MAX_IMAGE_SIZE) {
         xil_printf("ERROR: File too large for buffer\n\r");

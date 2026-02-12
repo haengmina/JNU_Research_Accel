@@ -446,3 +446,303 @@ PASS: 10/10 images
 PASS: 0:/bmp_24.bmp (200x200)
 
 ALL PASS: 10-image test + bmp_24.bmp final test
+
+********************************************************************
+
+Zynq MP First Stage Boot Loader 
+Release 2024.2   Feb 12 2026  -  19:10:26
+PMU-FW is not running, certain applications may not be supported.
+
+--- ZCU104 Baremetal Image Loader ---
+
+=== Memory Configuration ===
+Stack Size: 128 KB
+Heap Size: 2 MB
+File Buffer Size: 5 MB
+Image Buffer Size: 5 MB
+============================
+[SD] SUCCESS: SD Card mounted
+
+--- 10-image sequential test ---
+
+[Test] 0:/img_01.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 8.085 ms
+[PERF] Process Time: 3.131 ms
+PASS: 0:/img_01.bmp (224x224)
+
+[Test] 0:/img_02.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 8.376 ms
+[PERF] Process Time: 3.126 ms
+PASS: 0:/img_02.bmp (224x224)
+
+[Test] 0:/img_03.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 8.334 ms
+[PERF] Process Time: 3.126 ms
+PASS: 0:/img_03.bmp (224x224)
+
+[Test] 0:/img_04.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.833 ms
+[PERF] Process Time: 3.128 ms
+PASS: 0:/img_04.bmp (224x224)
+
+[Test] 0:/img_05.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.816 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_05.bmp (224x224)
+
+[Test] 0:/img_06.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.816 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_06.bmp (224x224)
+
+[Test] 0:/img_07.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.821 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_07.bmp (224x224)
+
+[Test] 0:/img_08.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.816 ms
+[PERF] Process Time: 3.129 ms
+PASS: 0:/img_08.bmp (224x224)
+
+[Test] 0:/img_09.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.726 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_09.bmp (224x224)
+
+[Test] 0:/img_10.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% (150582 / 6220854)
+[PERF] Load Time: 7.832 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_10.bmp (224x224)
+PASS: 10/10 images
+
+--- Final test: bmp_24.bmp ---
+
+[Test] 0:/bmp_24.bmp
+[MEM] Image Size: 120054 bytes
+[MEM] Buffer Occupancy: 1.92% (120054 / 6220854)
+[PERF] Load Time: 6.314 ms
+[PERF] Process Time: 2.498 ms
+PASS: 0:/bmp_24.bmp (200x200)
+
+ALL PASS: 10-image test + bmp_24.bmp final test
+
+********************************************************************
+
+Zynq MP First Stage Boot Loader 
+Release 2024.2   Feb 12 2026  -  19:12:32
+PMU-FW is not running, certain applications may not be supported.
+
+--- ZCU104 Baremetal Image Loader ---
+
+=== Memory Configuration ===
+Stack Size: 128 KB
+Heap Size: 2 MB
+File Buffer Size: 5 MB
+Image Buffer Size: 5 MB
+============================
+[SD] SUCCESS: SD Card mounted
+
+--- 10-image sequential test ---
+
+[Test] 0:/img_01.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.087 ms
+[PERF] Process Time: 3.135 ms
+PASS: 0:/img_01.bmp (224x224)
+
+[Test] 0:/img_02.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.375 ms
+[PERF] Process Time: 3.128 ms
+PASS: 0:/img_02.bmp (224x224)
+
+[Test] 0:/img_03.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.331 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_03.bmp (224x224)
+
+[Test] 0:/img_04.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.829 ms
+[PERF] Process Time: 3.129 ms
+PASS: 0:/img_04.bmp (224x224)
+
+[Test] 0:/img_05.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.813 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_05.bmp (224x224)
+
+[Test] 0:/img_06.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.817 ms
+[PERF] Process Time: 3.125 ms
+PASS: 0:/img_06.bmp (224x224)
+
+[Test] 0:/img_07.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.820 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_07.bmp (224x224)
+
+[Test] 0:/img_08.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.816 ms
+[PERF] Process Time: 3.126 ms
+PASS: 0:/img_08.bmp (224x224)
+
+[Test] 0:/img_09.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.725 ms
+[PERF] Process Time: 3.126 ms
+PASS: 0:/img_09.bmp (224x224)
+
+[Test] 0:/img_10.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.837 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_10.bmp (224x224)
+PASS: 10/10 images
+
+--- Final test: bmp_24.bmp ---
+
+[Test] 0:/bmp_24.bmp
+[MEM] Image Size: 120054 bytes
+[MEM] Buffer Occupancy: 1.92% 
+[PERF] Load Time: 6.313 ms
+[PERF] Process Time: 2.500 ms
+PASS: 0:/bmp_24.bmp (200x200)
+
+ALL PASS: 10-image test + bmp_24.bmp final test
+
+********************************************************************
+
+Zynq MP First Stage Boot Loader 
+Release 2024.2   Feb 12 2026  -  19:14:55
+PMU-FW is not running, certain applications may not be supported.
+
+--- ZCU104 Baremetal Image Loader ---
+
+=== Memory Configuration ===
+Stack Size: 128 KB
+Heap Size: 2 MB
+File Buffer Size: 5 MB
+Image Buffer Size: 5 MB
+============================
+[SD] SUCCESS: SD Card mounted
+
+--- 10-image sequential test ---
+
+[Test] 0:/img_01.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.310 ms
+[PERF] Process Time: 3.132 ms
+PASS: 0:/img_01.bmp (224x224)
+
+[Test] 0:/img_02.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.366 ms
+[PERF] Process Time: 3.129 ms
+PASS: 0:/img_02.bmp (224x224)
+
+[Test] 0:/img_03.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 8.335 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_03.bmp (224x224)
+
+[Test] 0:/img_04.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.835 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_04.bmp (224x224)
+
+[Test] 0:/img_05.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 7.811 ms
+[PERF] Process Time: 3.129 ms
+PASS: 0:/img_05.bmp (224x224)
+
+[Test] 0:/img_06.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 9.510 ms
+[PERF] Process Time: 3.129 ms
+PASS: 0:/img_06.bmp (224x224)
+
+[Test] 0:/img_07.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 9.513 ms
+[PERF] Process Time: 3.127 ms
+PASS: 0:/img_07.bmp (224x224)
+
+[Test] 0:/img_08.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 9.506 ms
+[PERF] Process Time: 3.128 ms
+PASS: 0:/img_08.bmp (224x224)
+
+[Test] 0:/img_09.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 9.418 ms
+[PERF] Process Time: 3.126 ms
+PASS: 0:/img_09.bmp (224x224)
+
+[Test] 0:/img_10.bmp
+[MEM] Image Size: 150582 bytes
+[MEM] Buffer Occupancy: 2.42% 
+[PERF] Load Time: 9.557 ms
+[PERF] Process Time: 3.128 ms
+PASS: 0:/img_10.bmp (224x224)
+PASS: 10/10 images
+
+--- Final test: bmp_24.bmp ---
+
+[Test] 0:/bmp_24.bmp
+[MEM] Image Size: 120054 bytes
+[MEM] Buffer Occupancy: 1.92% 
+[PERF] Load Time: 6.313 ms
+[PERF] Process Time: 2.500 ms
+PASS: 0:/bmp_24.bmp (200x200)
+
+ALL PASS: 10-image test + bmp_24.bmp final test
