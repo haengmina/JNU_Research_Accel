@@ -1,0 +1,11 @@
+
+{
+    "sensitivities": {
+        "dw": 0.85,
+        "pw": 0.15
+    },
+    "allocation": {
+        "dw": 8,
+        "pw": 4
+    }
+}

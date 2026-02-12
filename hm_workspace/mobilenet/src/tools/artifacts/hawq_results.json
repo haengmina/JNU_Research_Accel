@@ -1,0 +1,10 @@
+{
+    "sensitivities": {
+        "dw_layer": 8.423,
+        "pw_layer": 1.256
+    },
+    "allocation": {
+        "dw_layer": 8,
+        "pw_layer": 4
+    }
+}

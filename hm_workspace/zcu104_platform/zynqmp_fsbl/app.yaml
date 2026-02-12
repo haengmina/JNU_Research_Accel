@@ -1,0 +1,4 @@
+domain_path: D:\Lab\Project\FPGA_accel\workspace\hm_workspace\zcu104_platform\zynqmp_fsbl\zynqmp_fsbl_bsp
+app_src_dir: D:\Programs\Vitis\2024.2\data\embeddedsw\lib\sw_apps\zynqmp_fsbl
+template: zynqmp_fsbl
+lang: c

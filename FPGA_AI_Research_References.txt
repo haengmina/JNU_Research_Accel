@@ -1,0 +1,267 @@
+FPGA 기반 AI 가속기 연구 자료 모음
+
+용도: Google NotebookLM 학습 자료
+대상: 전자공학 석사 (ZCU104, MobileNet V1/V2 연구)
+수집일: 2026-02-09
+
+────────────────────────────────────
+
+[1] Xilinx/AMD 공식 문서
+
+1.1 Vitis AI 문서
+
+Vitis AI 메인 페이지
+URL: https://www.xilinx.com/products/design-tools/vitis/vitis-ai.html
+내용: AMD Vitis AI는 엣지 AI 및 데이터센터 애플리케이션을 위한 통합 개발 환경. 다양한 성능/전력 요구사항에 맞춘 NPU 코어 지원. 커스텀 AI 모델의 원활한 배포. 주요 딥러닝 프레임워크 지원.
+
+Vitis AI 3.5 문서
+URL: https://xilinx.github.io/Vitis-AI/3.5/html/index.html
+내용: DPU(Deep Learning Processing Unit) 개요. 하드웨어 엔진으로 ML 모델 추론 최적화. 모델 컴파일 및 최적화 도구. DSP, BlockRAM, UltraRAM, LUT, FF 등 FPGA 리소스 활용.
+
+DPU IP 상세 및 시스템 통합
+URL: https://xilinx.github.io/Vitis-AI/3.5/html/docs/workflow-system-integration.html
+내용: DPU는 딥러닝 추론용 소프트 가속기. FPGA 프로그래머블 로직 요소(DSP, BRAM, URAM, LUT, FF) 또는 AI Engine 아키텍처에서 실행. 다양한 네트워크 토폴로지 지원.
+
+ZCU104 레퍼런스 디자인
+URL: https://vitisai.docs.amd.com/en/latest/docs/zcu104-reference-design.html
+내용: Vitis AI 5.1부터 ZU+ 7EV 디바이스에 NPU IP 및 소프트웨어 스택 지원. ZCU104 보드용 레퍼런스 디자인 제공. Petalinux BSP 2025.1 필요.
+
+Vitis AI 사용자 가이드 목록
+URL: https://xilinx.github.io/Vitis-AI/3.0/html/docs/reference/release_documentation.html
+문서 목록:
+- UG1414: Vitis AI User Guide (DPU 기반 딥러닝 SDK)
+- UG1333: Vitis AI Optimizer User Guide (신경망 프루닝)
+- UG1354: Vitis AI Library User Guide (모델 배포 라이브러리)
+
+1.2 Xilinx 기술 백서
+
+Depthwise Convolution 최적화 (WP522)
+URL: https://docs.amd.com/api/khub/documents/F6xTwwmbrW534ZQyleFsDA/content
+내용: Depthwise convolution이 표준 convolution보다 적은 FLOPS로 더 나은 성능 달성. Xilinx 플랫폼의 deep convolution 엔진이 엣지/클라우드 가속기에서 우수한 성능 제공.
+
+INT4 최적화 (WP521)
+URL: https://docs.amd.com/api/khub/documents/SDFn1nGbW4R1ag1QuXRHRg/content
+내용: INT8이 부동소수점 대비 더 나은 성능과 비슷한 정밀도 제공. 리소스 제한 시 INT4 최적화로 INT8 대비 최대 77% 성능 향상 가능.
+
+1.3 GitHub 레퍼런스 프로젝트
+
+ZCU104 DPU ResNet18 예제
+URL: https://github.com/xiaobao-bit/zcu104-dpu-resnet18
+내용: Vivado에서 ZCU104 + DPU IP 플랫폼 생성(HW), Petalinux 빌드(OS), Vitis-AI로 모델 검사/양자화/컴파일(SW), ResNet18 실행.
+
+ZCU104 DPU 예제 (Vitis Flow)
+URL: https://xterra2.avnet.com/xilinx/zcu104/zcu104-dpu-example-vitis-flow
+
+Vitis 플랫폼 생성 튜토리얼
+URL: https://xilinx.github.io/Vitis-Tutorials/2021-2/build/html/docs/Vitis_Platform_Creation/Introduction/02-Edge-AI-ZCU104/README.html
+내용: ZCU104용 커스텀 Vitis 임베디드 플랫폼 생성. Vitis 가속 애플리케이션 및 Vitis-AI 애플리케이션 실행 가능.
+
+────────────────────────────────────
+
+[2] MobileNet FPGA 가속기 논문
+
+2.1 Depthwise Separable Convolution 하드웨어 최적화
+
+An Efficient FPGA-based Depthwise Separable CNN Accelerator with Hardware Pruning
+저자: Zhengyang Liu, Qiang Liu, Shun Yan, Ray C.C. Cheung
+학회: ACM Transactions on Reconfigurable Technology and Systems
+연도: 2023
+URL: https://scispace.com/papers/an-efficient-fpga-based-depthwise-separable-convolutional-2tycoukrx5
+기여: Depthwise separable CNN용 효율적 FPGA 추론 가속기. 하드웨어 프루닝 통합.
+
+A High Throughput MobileNetV2 FPGA Implementation Based on Flexible Architecture for DSC
+학회: IEEE
+연도: 2020
+URL: https://ieeexplore.ieee.org/document/9221517
+기여: Depthwise Separable Convolution을 위한 유연한 아키텍처 기반 고처리량 MobileNetV2 구현.
+
+Energy-Efficient Accelerator on FPGAs: Dual-Strategy Data Reuse and Unified Computing Engine for DSC
+저자: Qiu Li, Jia Xiao, Wu Yang 외
+소속: Central South University
+연도: 2024
+URL: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4991283
+기여: 듀얼 전략 데이터 재사용, 통합 컴퓨팅 엔진으로 에너지 효율적인 DSC 가속기.
+
+EDEA: Efficient Dual-Engine Accelerator for DSC with Direct Data Transfer
+연도: 2025
+URL: https://arxiv.org/abs/2503.11707
+기여: 직접 데이터 전송을 통한 효율적인 듀얼 엔진 DSC 가속기.
+
+Mobile-X: Dedicated FPGA Implementation of MobileNet Accelerator Optimizing DSC
+소속: Seoul National University of Science and Technology
+URL: https://pure.seoultech.ac.kr/en/publications/mobile-x-dedicated-fpga-implementation-of-the-mobilenet-accelerat/
+기여: DSC 최적화 전용 MobileNet FPGA 가속기. Scopus 18회 인용.
+
+2.2 MobileNet FPGA 구현
+
+An FPGA-based MobileNet Accelerator Considering Network Structure Characteristics
+연도: 2021
+URL: https://ieeexplore.ieee.org/document/9556413/
+기여: 네트워크 구조 특성을 고려한 MobileNet FPGA 가속기.
+
+Design of Accelerator for MobileNet CNN Based on FPGA
+연도: 2019
+URL: https://ieeexplore.ieee.org/document/8997842
+기여: FPGA 기반 MobileNet CNN 가속기 설계.
+
+A CNN Accelerator on FPGA Using Depthwise Separable Convolution
+저자: Lin Bai, Yiming Zhao, Xinming Huang
+연도: 2018
+URL: https://arxiv.org/pdf/1809.01536
+기여: MobileNetV2, Xception 등 DSC 기반 CNN을 위한 FPGA 가속기. 연산량과 파라미터 대폭 감소.
+
+2.3 경량 CNN FPGA 가속기
+
+An FPGA-Based CNN Accelerator Integrating Depthwise Separable Convolution
+저자: Junbao Li 외
+학회: MDPI Electronics
+연도: 2019
+URL: https://www.mdpi.com/2079-9292/8/3/281
+기여: DSC 통합 FPGA 기반 CNN 가속기.
+
+Efficient CNN Accelerator Based on Low-End FPGA with Optimized DSC and SE Modules
+연도: 2025
+URL: https://www.mdpi.com/2673-2688/6/10/244
+기여: 저가형 FPGA에서 DSC 및 Squeeze-and-Excite 모듈 최적화.
+
+FPGA based Flexible Implementation of Light Weight Inference on DCNNs
+학회: International Arab Journal of Information Technology
+연도: 2024
+URL: https://www.iajit.org/upload/files/FPGA-based-Flexible-Implementation-of-Light-Weight-Inference-on-Deep-Convolutional-Neural-Networks.pdf
+기여: 스마트 카메라, 자율주행 등 저지연 요구 애플리케이션용 경량 추론.
+
+2.4 메모리 최적화
+
+Memory-Efficient Dataflow Inference for Deep CNNs on FPGA
+연도: 2020
+URL: https://arxiv.org/abs/2011.07317
+기여: FPGA에서 딥 CNN의 메모리 효율적 데이터플로우 추론.
+
+An Improved Strategy for Data Layout in Convolution Operations on FPGA-Based Multi-Memory Accelerators
+저자: Hongzhi Zhao 외
+연도: 2025
+URL: https://www.mdpi.com/2079-9292/14/11/2127
+기여: 멀티 메모리 가속기에서 컨볼루션 연산의 데이터 레이아웃 전략 개선.
+
+────────────────────────────────────
+
+[3] HLS 기반 CNN 가속기 오픈소스
+
+3.1 hls4ml
+
+프로젝트명: hls4ml
+GitHub: https://github.com/fastmachinelearning/hls4ml
+문서: https://cds.cern.ch/record/2950352/files/2512.01463.pdf
+특징:
+- HLS를 이용한 FPGA 머신러닝 가속
+- 오픈소스, 유연한 플랫폼
+- Keras, PyTorch 모델 지원
+- CERN 주도 개발
+- Catapult HLS, Vitis HLS 지원
+- 저지연 실시간 추론에 최적화
+
+활용법:
+1. Python에서 학습된 모델 로드
+2. hls4ml로 HLS 코드 생성
+3. Vivado/Vitis로 합성
+4. FPGA에 배포
+
+3.2 FINN
+
+프로젝트명: FINN
+GitHub: https://github.com/Xilinx/finn
+문서: https://finn.readthedocs.io/
+Quickstart: https://xilinx.github.io/finn/quickstart.html
+예제: https://github.com/Xilinx/finn-examples
+
+특징:
+- AMD Research & Advanced Development의 실험적 프레임워크
+- 양자화 신경망(QNN) 추론 전용
+- 각 네트워크에 맞춤화된 데이터플로우 아키텍처 생성
+- Brevitas(PyTorch 양자화 학습), FINN 컴파일러, finn-hlslib 구성
+- 범용 DNN 가속 솔루션이 아닌 공동 설계 기반
+- 리소스/성능 요구사항에 맞춘 설계 공간 탐색
+
+구성요소:
+- finn-base: ONNX 프론트엔드 기반 컴파일러 프레임워크 (https://github.com/Xilinx/finn-base)
+- finn-hlslib: Vitis HLS 라이브러리
+- Brevitas: 양자화 인식 학습
+
+활용법:
+1. Brevitas로 양자화 모델 학습
+2. FINN 컴파일러로 FPGA 가속기 생성
+3. 비트스트림 배포
+
+3.3 Vitis AI 예제
+
+GitHub: https://github.com/Xilinx/Vitis-AI
+DPU TRD (Target Reference Design) 제공
+ZCU104, ZCU102 등 다양한 보드 지원
+Python/C++ 샘플 코드 포함
+
+────────────────────────────────────
+
+[4] FPGA AI 가속기 특허
+
+4.1 Xilinx/AMD DPU 관련
+
+Deep Processing Unit (DPU) for Implementing an Artificial Neural Network (ANN)
+특허번호: US20180046903A1
+출원인: Xilinx
+URL: https://patents.google.com/patent/US20180046903A1/en
+핵심 내용: ANN 구현을 위한 DPU 아키텍처. 데이터 레이어, 명령어 처리 구조.
+
+4.2 Depthwise Convolution 최적화
+
+Xilinx WP522 (Optimization for Depth-Wise Convolution on Xilinx Devices)
+내용: Depthwise convolution이 표준 convolution보다 적은 FLOPS로 더 나은 성능. Xilinx deep convolution 엔진의 엣지/클라우드 가속기 적용.
+
+4.3 양자화 최적화
+
+Xilinx WP521 (INT4 Optimization)
+내용: INT8이 부동소수점 대비 좋은 성능/정밀도. INT4 최적화로 INT8 대비 최대 77% 성능 향상.
+
+────────────────────────────────────
+
+[5] 추가 참고 자료
+
+5.1 벤치마크
+
+MLPerf Inference: 표준 AI 추론 벤치마크
+DAWNBench: 효율성 평가 벤치마크
+ImageNet: 정확도 평가 표준 데이터셋
+
+5.2 개발 도구
+
+Vivado: FPGA 설계/합성/구현
+Vitis HLS: 고수준 합성 (C/C++ → RTL)
+Vitis IDE: 임베디드 애플리케이션 개발
+Petalinux: 임베디드 Linux 빌드
+
+5.3 핵심 최적화 기법
+
+Loop Tiling: 메모리 접근 최적화, 데이터 재사용 극대화
+Line Buffer: 온칩 메모리 효율적 활용
+Pipeline: 처리량 향상
+Unrolling: 병렬성 증가
+Quantization: INT8/INT4로 연산량 감소, 리소스 절감
+Pruning: 불필요한 가중치 제거
+
+────────────────────────────────────
+
+요약
+
+이 자료는 FPGA 기반 MobileNet AI 가속기 연구에 필요한 핵심 참고 자료를 모았습니다.
+
+공식 문서: Vitis AI, DPU 아키텍처, ZCU104 레퍼런스 디자인
+논문: Depthwise Separable Convolution 최적화, MobileNet FPGA 구현, 메모리 최적화
+오픈소스: hls4ml, FINN, Vitis AI 예제
+특허: DPU 아키텍처, Depthwise Conv 최적화
+
+Google NotebookLM에 업로드하여 연구 질문에 활용하세요.
+
+질문 예시:
+- DPU 아키텍처의 핵심 구성요소는?
+- Depthwise Separable Convolution 최적화 연구 동향은?
+- hls4ml과 FINN의 차이점은?
+- ZCU104에서 MobileNet 구현 시 참고할 레퍼런스는?
