@@ -53,8 +53,8 @@ int sd_read_file(const char *filename, u8 *buffer, u32 buffer_size) {
     return XST_FAILURE;
   }
 
-  // Flush Data Cache
-  Xil_DCacheFlushRange((UINTPTR)buffer, buffer_size);
+  // Invalidate Data Cache to ensure CPU reads new data from DDR
+  Xil_DCacheInvalidateRange((UINTPTR)buffer, buffer_size);
 
   return XST_SUCCESS;
 }

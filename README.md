@@ -17,6 +17,7 @@ Xilinx Vivado 및 Vitis 프로젝트를 위한 주요 작업 공간입니다.
 - **문서:** `docs/FPGA_Learning_Guide.md` (현재 따르고 있는 메인 가이드).
 - **소스 코드:** 베어메탈 애플리케이션용 참조 C++ 코드 (예: `zcu104-baremetal-imgio`).
 - **에셋:** 테스트 이미지 (`bmp_24.bmp`) 및 기타 리소스.
+- **URL:** https://github.com/vandinhtranengg
 
 ### 3. `onnx_project/` (딥러닝 모델)
 AI 추론 작업을 위한 딥러닝 프레임워크 및 모델 파일을 포함합니다.

@@ -1,45 +1,236 @@
 
-// 베어메탈 A53 데모: SD BMP -> 전처리 -> DWConv3x3+ReLU6 -> PWConv1x1 -> AvgPool -> Softmax -> Top-5
+// 베어메탈 A53 MobileNetV1 통합 데모
+// 기능: 비트스트림 로드 -> 가중치/라벨 로드 -> SD BMP -> 추론 -> Top-5
 #include "xil_printf.h"
 #include "xil_cache.h"
-#include "ff.h"            // FatFs (xilffs)
-#include "xtime_l.h"       // COUNTS_PER_SECOND, XTime_GetTime
+#include "ff.h"            // FatFs
+#include "xtime_l.h"       // 타이밍
+#include "xfpga.h"         // FPGA 비트스트림 로드
 #include <cstdint>
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include "ref_kernels.h"
-
 
 using namespace std;
 
-// 빠른 진단: SD 디렉토리 목록 출력
-// static void list_dir(const char* path) {
-//    DIR dir; FILINFO fno;
-//    FRESULT rc = f_opendir(&dir, path);
-//    xil_printf("opendir(%s) rc=%d\r\n", path, rc);
-//    if (rc != FR_OK) return;
-//    for (;;) {
-//        rc = f_readdir(&dir, &fno);
-//        if (rc != FR_OK || fno.fname[0] == 0) break; // end
-//        // When LFN is OFF, fno.fname shows the 8.3 alias (e.g., TEST_3~1.BMP).
-//        xil_printf("  %s\r\n", fno.fname);
-//    }
-//    f_closedir(&dir);
-//}
-// call it:
-//list_dir("0:/");
-//list_dir("0:/ASSETS");  // or "0:/assets" if you used lower-case
-
-
-// Helper: xil_printf로 정수 밀리초(ms) 출력
-static inline void print_ms(XTime t0, XTime t1) {
-    u64 diff = t1 - t0;
-    // 정수 ms (실수형 float 완전히 배제)
-    u32 ms = (u32)((diff * 1000U) / COUNTS_PER_SECOND);
-    xil_printf("%u ms\r\n", ms);
+// ---------- 타이밍 헬퍼 ----------
+static inline u32 ms_from_counts(XTime t0, XTime t1) {
+    return (u32)(((t1 - t0) * 1000U) / COUNTS_PER_SECOND);
 }
+static inline u32 us_from_counts(XTime t0, XTime t1) {
+    return (u32)(((t1 - t0) * 1000000U) / COUNTS_PER_SECOND);
+}
+static inline void print_ms_us(XTime t0, XTime t1) {
+    xil_printf("%u ms (%u us)\r\n", ms_from_counts(t0, t1), us_from_counts(t0, t1));
+}
+
+// ---------- SD 헬퍼 ----------
+static FATFS fatfs;
+static FIL   file;
+
+static bool sd_mount() {
+    FRESULT rc = f_mount(&fatfs, "0:/", 1);
+    if(rc != FR_OK){ xil_printf("f_mount failed: %d\r\n", rc); return false; }
+    xil_printf("[SD] Mounted: 0:/\r\n");
+    return true;
+}
+
+static bool sd_read_all(const char* path, vector<uint8_t>& out){
+    FRESULT rc = f_open(&file, path, FA_READ);
+    if(rc != FR_OK){ xil_printf("[SD] open %s failed: %d\r\n", path, rc); return false; }
+    UINT fsize = f_size(&file);
+    out.resize(fsize);
+    UINT br=0; rc = f_read(&file, out.data(), fsize, &br); f_close(&file);
+    if(rc!=FR_OK || br!=fsize){ xil_printf("[SD] read failed rc=%d\r\n", rc); return false; }
+    return true;
+}
+
+// ---------- FPGA 비트스트림 로더 ----------
+static bool fpga_load_bitstream(const char* path) {
+    vector<uint8_t> bitstream;
+    xil_printf("[FPGA] Loading bitstream: %s ...\r\n", path);
+    if(!sd_read_all(path, bitstream)) return false;
+
+    XTime t0, t1;
+    XTime_GetTime(&t0);
+    
+    // 캐시 일관성을 위해 비트스트림 메모리 플러시
+    Xil_DCacheFlushRange((INTPTR)bitstream.data(), bitstream.size());
+
+    // u32 Status = XFpga_PL_BitStream_Load(&XFpgaInstance, (UINTPTR)bitstream.data(), (UINTPTR)bitstream.data(), bitstream.size(), XFPGA_FULL_BITSTREAM);
+    
+    xil_printf("[FPGA] Success (Mocked API Call)\r\n");
+    XTime_GetTime(&t1);
+    xil_printf("[FPGA] Programming time: "); print_ms_us(t0, t1);
+    
+    return true;
+}
+
+// ---------- 가중치 관리 시스템 ----------
+struct LayerWeights {
+    int layer_id;
+    int bits;
+    size_t offset;
+    size_t size;
+    uint8_t* data;
+};
+
+static vector<uint8_t> weights_all;
+static vector<LayerWeights> layers;
+
+bool load_mobilenet_weights(const char* weights_path, const char* metadata_path) {
+    vector<uint8_t> meta_buf;
+    if(!sd_read_all(metadata_path, meta_buf)) return false;
+    if(!sd_read_all(weights_path, weights_all)) return false;
+
+    int32_t* meta = (int32_t*)meta_buf.data();
+    int num_layers = meta_buf.size() / (sizeof(int32_t) * 4);
+    
+    layers.clear();
+    for(int i=0; i<num_layers; ++i) {
+        LayerWeights lw;
+        lw.layer_id = meta[i*4 + 0];
+        lw.bits     = meta[i*4 + 1];
+        lw.offset   = (size_t)meta[i*4 + 2];
+        lw.size     = (size_t)meta[i*4 + 3];
+        lw.data     = weights_all.data() + lw.offset;
+        layers.push_back(lw);
+    }
+    
+    xil_printf("[Model] Loaded %d layers from %s\r\n", num_layers, weights_path);
+    return true;
+}
+
+// ---------- 라벨 & Top-5 ----------
+static vector<string> load_labels(const char* path){
+    vector<string> labels; vector<uint8_t> buf;
+    if(!sd_read_all(path, buf)) return labels;
+    string s((char*)buf.data(), (char*)buf.data()+buf.size());
+    size_t pos=0;
+    while(pos<s.size()){
+        size_t nl=s.find('\n',pos); if(nl==string::npos) nl=s.size();
+        string line=s.substr(pos,nl-pos); if(!line.empty() && line.back()=='\r') line.pop_back();
+        if(!line.empty()) labels.push_back(line);
+        pos=(nl==s.size()? nl : nl+1);
+    }
+    return labels;
+}
+
+static void print_top5(const vector<float>& probs, const vector<string>& labels) {
+    struct Score { int idx; float val; };
+    vector<Score> s; s.reserve(probs.size());
+    for (size_t i = 0; i < probs.size(); ++i) s.push_back({(int)i, probs[i]});
+    sort(s.begin(), s.end(), [](const Score& a, const Score& b){ return a.val > b.val; });
+
+    int k = min(5, (int)s.size());
+    xil_printf("\r\n--- Prediction: Top-%d ---\r\n", k);
+    for (int i = 0; i < k; ++i) {
+        const char* name = (s[i].idx < (int)labels.size() ? labels[s[i].idx].c_str() : "unknown");
+        u32 pct = (u32)lrintf(s[i].val * 100.0f);
+        xil_printf(" #%d: %s (%u%%)\r\n", i+1, name, pct);
+    }
+}
+
+// ---------- BMP 24-bit 로더 ----------
+#pragma pack(push,1)
+struct BMPFileHeader{ uint16_t bfType; uint32_t bfSize; uint16_t r1; uint16_t r2; uint32_t bfOffBits; };
+struct BMPInfoHeader{ uint32_t biSize; int32_t biWidth; int32_t biHeight; uint16_t biPlanes; uint16_t biBitCount; uint32_t biCompression; uint32_t biSizeImage; int32_t biXPelsPerMeter; int32_t biYPelsPerMeter; uint32_t biClrUsed; uint32_t biClrImportant; };
+#pragma pack(pop)
+
+static bool load_bmp_24(const char* path, int targetW, int targetH, vector<uint8_t>& out_rgb) {
+    FRESULT rc = f_open(&file, path, FA_READ); if(rc!=FR_OK) return false;
+    BMPFileHeader fh; BMPInfoHeader ih; UINT br;
+    f_read(&file, &fh, sizeof(fh), &br); f_read(&file, &ih, sizeof(ih), &br);
+    if(fh.bfType!=0x4D42 || ih.biBitCount!=24){ f_close(&file); return false; }
+    
+    int W = ih.biWidth, H = abs(ih.biHeight);
+    if(W != targetW || H != targetH){ xil_printf("[BMP] Size mismatch: %dx%d (expected %dx%d)\r\n", W, H, targetW, targetH); f_close(&file); return false; }
+    
+    out_rgb.resize(W*H*3);
+    uint32_t row_stride = ((W*3 + 3) & ~3);
+    vector<uint8_t> row(row_stride);
+    f_lseek(&file, fh.bfOffBits);
+    for(int y=0; y<H; ++y){
+        f_read(&file, row.data(), row_stride, &br);
+        int dst_y = (ih.biHeight > 0) ? (H-1-y) : y;
+        uint8_t* dst = &out_rgb[(dst_y*W)*3];
+        for(int x=0; x<W; ++x){
+            dst[x*3+0]=row[x*3+2]; dst[x*3+1]=row[x*3+1]; dst[x*3+2]=row[x*3+0];
+        }
+    }
+    f_close(&file);
+    return true;
+}
+
+// ---------- 메인 루틴 ----------
+int main() {
+    xil_printf("\r\n=== ZCU104 MobileNetV1 Week 3 Integration ===\r\n");
+
+    if(!sd_mount()) return -1;
+
+    // 1. FPGA 비트스트림 로드 (PL 가속기 준비)
+    fpga_load_bitstream("0:/mobilenet_wrapper.bit");
+
+    // 2. 가중치 및 라벨 로드
+    load_mobilenet_weights("0:/assets/mixed/weights_all.bin", "0:/assets/mixed/metadata.bin");
+    vector<string> labels = load_labels("0:/assets/labels.txt");
+
+    // 3. 이미지 로드 (MobileNetV1 표준 224x224 또는 32x32 폴백)
+    int W=224, H=224, C=3;
+    vector<uint8_t> rgb;
+    if(!load_bmp_24("0:/assets/samples/digit_1.bmp", 224, 224, rgb)) {
+        if(load_bmp_24("0:/assets/samples/digit_1.bmp", 32, 32, rgb)) {
+            W=32; H=32; xil_printf("[Info] Using 32x32 sample\r\n");
+        } else {
+            xil_printf("[Error] Image load failed\r\n"); return -1;
+        }
+    }
+
+    // 4. 추론 준비
+    const int Cout = 1000;
+    const float in_scale=0.02f, w_scale=0.002f, out_scale=0.02f, sm_scale=1.0f/255.0f;
+    const int in_zp=128, w_zp=128, out_zp=128, sm_zp=0;
+
+    vector<uint8_t> in_u8(rgb.size());
+    memcpy(in_u8.data(), rgb.data(), rgb.size());
+
+    vector<uint8_t> dw_out(rgb.size());
+    vector<uint8_t> pw_out(W * H * Cout);
+    vector<uint8_t> sm_out(Cout);
+
+    tensor_u8_nhwc_t tin  = {H, W, C,    in_u8.data(),  in_scale, in_zp};
+    tensor_u8_nhwc_t tdw  = {H, W, C,    dw_out.data(), out_scale, out_zp};
+    tensor_u8_nhwc_t tpw  = {H, W, Cout, pw_out.data(), out_scale, out_zp};
+    tensor_u8_nhwc_t tsm  = {1, 1, Cout, sm_out.data(), sm_scale, sm_zp};
+
+    // 5. 추론 실행
+    XTime t_start, t_end;
+    XTime_GetTime(&t_start);
+
+    if(layers.size() >= 2) {
+        dwconv3x3_nhwc_mixed(&tin, layers[0].data, NULL, w_scale, w_zp, layers[0].bits, &tdw, 1);
+        pwconv1x1_nhwc_mixed(&tdw, layers[1].data, NULL, w_scale, w_zp, layers[1].bits, &tpw);
+    }
+
+    avgpool_global_nhwc_u8(&tpw, &tsm);
+    softmax_u8(&tsm, &tsm);
+
+    XTime_GetTime(&t_end);
+    xil_printf("[Inference] Total time: "); print_ms_us(t_start, t_end);
+
+    // 6. 결과 출력
+    vector<float> probs(Cout);
+    for(int i=0; i<Cout; ++i) probs[i] = sm_scale * ((int)sm_out[i] - sm_zp);
+    print_top5(probs, labels);
+
+    xil_printf("=== Finished ===\r\n");
+    while(1);
+    return 0;
+}
+
 
 
 static inline u32 ms_from_counts(XTime t0, XTime t1) {
