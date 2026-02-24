@@ -1,0 +1,33 @@
+# Vivado/Vitis Git Ignore
+.Xil/
+*.jou
+*.log
+*.pb
+*.str
+*.os
+*.o
+*.elf
+*.mld
+*.tcl.user
+
+# Vitis Workspace
+_ide/
+Zybo_platform/
+MemAcc/
+project_Zybo_MemAcc/
+export/
+
+# Project Specific
+.rigel_lopper/
+.analytics/
+.metadata/
+RemoteRepo.txt
+*.bak
+
+# Build output
+build/
+/build
+
+# OS
+.DS_Store
+Thumbs.db
