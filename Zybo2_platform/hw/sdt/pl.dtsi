@@ -1,0 +1,46 @@
+/ {
+	amba_pl: amba_pl {
+		ranges;
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		firmware-name = "Zybo_MemAcc_wrapper.bit.bin";
+		clocking0: clocking0 {
+			compatible = "xlnx,fclk";
+			assigned-clocks = <&clkc 15>;
+			assigned-clock-rates = <150000000>;
+			#clock-cells = <0>;
+			clock-output-names = "fabric_clk";
+			clocks = <&clkc 15>;
+		};
+		afi0: afi0@f8008000 {
+			status = "okay";
+			compatible = "xlnx,afi-fpga";
+			#address-cells = <1>;
+			reg = <0xF8008000 0x1000>;
+			#size-cells = <0>;
+			xlnx,afi-width = <0>;
+		};
+		memcopy_accel_0: memcopy_accel@40000000 {
+			interrupts = < 0 29 4 >;
+			compatible = "xlnx,memcopy-accel-1.0";
+			xlnx,ii = "57 , ~ , 32793";
+			xlnx,machine = <64>;
+			interrupt-parent = <&intc>;
+			xlnx,rable = <0>;
+			xlnx,ip-name = "memcopy_accel";
+			reg = <0x40000000 0x10000>;
+			xlnx,s-axi-ctrl-bus-addr-width = <6>;
+			clocks = <&clkc 15>;
+			xlnx,clk-period = <4>;
+			xlnx,edk-iptype = "PERIPHERAL";
+			status = "okay";
+			clock-names = "ap_clk";
+			xlnx,s-axi-ctrl-bus-data-width = <32>;
+			interrupt-names = "interrupt";
+			xlnx,combinational = <0>;
+			xlnx,latency = <56>;
+			xlnx,name = "memcopy_accel_0";
+		};
+	};
+};

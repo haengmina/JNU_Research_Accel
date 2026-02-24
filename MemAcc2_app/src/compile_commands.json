@@ -1,0 +1,12 @@
+[
+{
+  "directory": "D:/Zybo/MemAcc2_app/build",
+  "command": "D:\\Programs\\Vitis\\2024.2\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe -isystem D:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/include -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/x86_64-oesdk-mingw32/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/13.3.0/include -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/x86_64-oesdk-mingw32/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/13.3.0/include-fixed -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/aarch32-xilinx-eabi/usr/include  -O2 -DSDT -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard  -MMD -MP -specs=D:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/Xilinx.spec -ID:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/include -Wall -Wextra      -O0  -g3     -U__clang__ \"-D__FILENAME__='__FILE__'\" -o CMakeFiles\\MemAcc2_app.elf.dir\\D_\\Zybo\\MemAcc2_app\\main.c.obj -c D:\\Zybo\\MemAcc2_app\\main.c",
+  "file": "D:\\Zybo\\MemAcc2_app\\main.c"
+},
+{
+  "directory": "D:/Zybo/MemAcc2_app/build",
+  "command": "D:\\Programs\\Vitis\\2024.2\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe -isystem D:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/include -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/x86_64-oesdk-mingw32/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/13.3.0/include -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/x86_64-oesdk-mingw32/usr/lib/arm-xilinx-eabi/gcc/arm-xilinx-eabi/13.3.0/include-fixed -isystem D:/Programs/Vitis/2024.2/gnu/aarch32/nt/gcc-arm-none-eabi/aarch32-xilinx-eabi/usr/include  -O2 -DSDT -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard  -MMD -MP -specs=D:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/Xilinx.spec -ID:/Zybo/Zybo2_platform/export/Zybo2_platform/sw/standalone_ps7_cortexa9_0/include -Wall -Wextra      -O0  -g3     -U__clang__ \"-D__FILENAME__='__FILE__'\" -o CMakeFiles\\MemAcc2_app.elf.dir\\D_\\Zybo\\MemAcc2_app\\memcopy_accel.c.obj -c D:\\Zybo\\MemAcc2_app\\memcopy_accel.c",
+  "file": "D:\\Zybo\\MemAcc2_app\\memcopy_accel.c"
+}
+]
